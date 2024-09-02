@@ -14,8 +14,9 @@ import Paper from '@mui/material/Paper';
 import {FormControlLabel, Checkbox, Grid2} from "@mui/material";
 
 import { Headline } from "@/app/page";
+import { getHeadlines } from "@/app/_components/fetchers";
 import TablePaginationActions from "@/app/_components/TablePaginationActions";
-import {useState} from "react";
+import { useState } from "react";
 
 const HeadlineList = ({headlines, categories }: {
     headlines: Headline[],
@@ -45,12 +46,12 @@ const HeadlineList = ({headlines, categories }: {
     const [ checkedCategories, setCheckedCategories ] = useState(categories);
     const [ filteredHeadlines, setFilteredHeadlines ] = useState(headlines);
 
-    const onChangeCategoryCheckbox = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const onChangeCategoryCheckbox = async (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const subjectCategory = categories[index];
         const checked = event.target.checked;
         const newCheckedCategories = checked ? checkedCategories.concat(subjectCategory) : checkedCategories.filter(category => category !== subjectCategory);
-        const newFilteredHeadlines = headlines.filter(headline => newCheckedCategories.includes(headline.category));
         setCheckedCategories(newCheckedCategories);
+        const newFilteredHeadlines = await getHeadlines(newCheckedCategories);
         setFilteredHeadlines(newFilteredHeadlines);
     };
 
@@ -100,7 +101,7 @@ const HeadlineList = ({headlines, categories }: {
                                 <TablePagination
                                     rowsPerPageOptions={[5, 10, 25, {label: 'All', value: -1}]}
                                     colSpan={4}
-                                    count={headlines.length}
+                                    count={filteredHeadlines.length}
                                     rowsPerPage={rowsPerPage}
                                     page={page}
                                     slotProps={{

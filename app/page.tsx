@@ -1,4 +1,5 @@
 import HeadlineList from "@/app/_components/HeadlineList";
+import { getCategories, getHeadlines } from "@/app/_components/fetchers";
 
 export type Headline = {
   id: number;
@@ -7,24 +8,6 @@ export type Headline = {
   description: string | null;
   forward_refs?: Headline[];
   backward_refs?: Headline[];
-};
-
-const getCategories = async () : Promise<string[]> => {
-  type Received = {
-    categories: string[];
-  };
-  const data = await fetch('http://localhost/api/categories', { cache: 'no-store' });
-  const json : Received = await data.json();
-  return json.categories;
-};
-
-const getHeadlines = async () : Promise<Headline[]> => {
-  type Received = {
-    headlines: Headline[];
-  };
-  const data = await fetch('http://localhost/api/headlines', { cache: 'no-store' });
-  const json : Received = await data.json();
-  return json.headlines;
 };
 
 export default async function Home() {
