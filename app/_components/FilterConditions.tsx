@@ -3,9 +3,10 @@
 import {Checkbox, FormControlLabel, Grid2 as Grid} from "@mui/material";
 import * as React from "react";
 
-const FilterConditions = ({ categories, onChangeCategoryCheckbox }:
+const FilterConditions = ({ categories, checkedCategories, onChangeCategoryCheckbox }:
                               {
                                   categories: string[],
+                                  checkedCategories: string[],
                                   onChangeCategoryCheckbox: (event: React.ChangeEvent<HTMLInputElement>, index: number) => void
                               }) => {
     return (
@@ -15,7 +16,7 @@ const FilterConditions = ({ categories, onChangeCategoryCheckbox }:
                     <Grid key={index} size={4}>
                         <FormControlLabel
                             control={
-                                <Checkbox defaultChecked onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}/>
+                                <Checkbox defaultChecked={checkedCategories.includes(category)} onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}/>
                             }
                             label={category}/>
                     </Grid>)
