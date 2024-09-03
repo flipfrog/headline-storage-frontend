@@ -1,14 +1,15 @@
 'use client'
 
+import * as React from "react";
+import { useState } from 'react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow} from "@mui/material";
 import {Headline} from "@/app/page";
 import TablePaginationActions from "@/app/_components/TablePaginationActions";
-import * as React from "react";
 
 const HeadlineTable = ({ headlines }:{ headlines: Headline[] }) => {
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = useState<number>(0);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
