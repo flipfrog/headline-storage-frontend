@@ -21,8 +21,8 @@ const HeadlineList = ({headlines, categories }: {
         const checked = event.target.checked;
         const newCheckedCategories = checked ?
             checkedCategories.concat(subjectCategory) : checkedCategories.filter(category => category !== subjectCategory);
-        setCheckedCategories(newCheckedCategories);
         const newFilteredHeadlines = await getHeadlines(newCheckedCategories);
+        setCheckedCategories(newCheckedCategories);
         setFilteredHeadlines(newFilteredHeadlines);
     };
 
