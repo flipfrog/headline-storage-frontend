@@ -3,11 +3,11 @@
 import  * as React from 'react';
 import { useState } from "react";
 import { TableContainer, Table, TableHead, TableBody, TableFooter, TableRow, TableCell, TablePagination } from '@mui/material';
-import { FormControlLabel, Checkbox } from "@mui/material";
-import { Paper, Box, Grid2 as Grid } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 
 import { Headline } from "@/app/page";
 import { getHeadlines } from "@/app/_components/fetchers";
+import FilterConditions from "@/app/_components/FilterConditions";
 import TablePaginationActions from "@/app/_components/TablePaginationActions";
 
 const HeadlineList = ({headlines, categories }: {
@@ -35,8 +35,8 @@ const HeadlineList = ({headlines, categories }: {
         setPage(0);
     };
 
-    const [ checkedCategories, setCheckedCategories ] = useState(categories);
-    const [ filteredHeadlines, setFilteredHeadlines ] = useState(headlines);
+    const [ checkedCategories, setCheckedCategories ] = useState<string[]>([]);
+    const [ filteredHeadlines, setFilteredHeadlines ] = useState<Headline[]>(headlines);
 
     const onChangeCategoryCheckbox = async (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const subjectCategory = categories[index];
@@ -50,19 +50,7 @@ const HeadlineList = ({headlines, categories }: {
     return (
         <Paper>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2} padding={'1.5em'}>
-                    {
-                        categories.map((category, index) => (
-                            <Grid key={index} size={4}>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox defaultChecked onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}/>
-                                    }
-                                    label={category}/>
-                            </Grid>)
-                        )
-                    }
-                </Grid>
+                <FilterConditions categories={categories} onChangeCategoryCheckbox={onChangeCategoryCheckbox} />
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
