@@ -1,4 +1,4 @@
-import HeadlineList from "@/app/_components/HeadlineList";
+import HeadlinePanel from "@/app/_components/HeadlinePanel";
 import { getCategories, getHeadlines } from "@/app/_components/fetchers";
 
 export type Headline = {
@@ -16,7 +16,7 @@ export default async function HeadlineTop() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <HeadlineList categories={categories} headlines={headlines} />
+      <HeadlinePanel categories={categories} headlines={headlines} />
     </main>
   );
 }
