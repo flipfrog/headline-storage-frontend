@@ -16,7 +16,10 @@ const FilterConditions = ({ categories, checkedCategories, onChangeCategoryCheck
                     <Grid key={index} size={4}>
                         <FormControlLabel
                             control={
-                                <Checkbox defaultChecked={checkedCategories.includes(category)} onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}/>
+                                <Checkbox
+                                    defaultChecked={checkedCategories.includes(category)}
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}
+                                />
                             }
                             label={category}/>
                     </Grid>)
