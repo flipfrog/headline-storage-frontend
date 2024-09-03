@@ -9,7 +9,7 @@ import { getHeadlines } from "@/app/_components/fetchers";
 import FilterConditions from "@/app/_components/FilterConditions";
 import HeadlineTable from "@/app/_components/HeadlineTable";
 
-const HeadlineList = ({headlines, categories }: {
+const HeadlinePanel = ({headlines, categories }: {
     headlines: Headline[],
     categories: string[],
 }) => {
@@ -40,4 +40,4 @@ const HeadlineList = ({headlines, categories }: {
     );
 };
 
-export default HeadlineList;
+export default HeadlinePanel;
