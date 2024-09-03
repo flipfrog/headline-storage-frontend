@@ -1,22 +1,14 @@
 'use client'
 
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import {FormControlLabel, Checkbox, Grid2} from "@mui/material";
+import  * as React from 'react';
+import { useState } from "react";
+import { TableContainer, Table, TableHead, TableBody, TableFooter, TableRow, TableCell, TablePagination } from '@mui/material';
+import { FormControlLabel, Checkbox } from "@mui/material";
+import { Paper, Box, Grid2 as Grid } from "@mui/material";
 
 import { Headline } from "@/app/page";
 import { getHeadlines } from "@/app/_components/fetchers";
 import TablePaginationActions from "@/app/_components/TablePaginationActions";
-import { useState } from "react";
 
 const HeadlineList = ({headlines, categories }: {
     headlines: Headline[],
@@ -56,21 +48,21 @@ const HeadlineList = ({headlines, categories }: {
     };
 
     return (
-        <>
+        <Paper>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid2 container spacing={2}>
+                <Grid container spacing={2} padding={'1.5em'}>
                     {
                         categories.map((category, index) => (
-                            <Grid2 key={index} size={3}>
+                            <Grid key={index} size={4}>
                                 <FormControlLabel
                                     control={
                                         <Checkbox defaultChecked onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCategoryCheckbox(event, index)}/>
                                     }
                                     label={category}/>
-                            </Grid2>)
+                            </Grid>)
                         )
                     }
-                </Grid2>
+                </Grid>
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
                         <TableHead>
@@ -121,7 +113,7 @@ const HeadlineList = ({headlines, categories }: {
                     </Table>
                 </TableContainer>
             </Box>
-        </>
+        </Paper>
     );
 };
 
