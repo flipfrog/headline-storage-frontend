@@ -10,7 +10,7 @@ export type Headline = {
   backward_refs?: Headline[];
 };
 
-export default async function Home() {
+export default async function HeadlineTop() {
   const categories: string[] = await getCategories();
   const headlines: Headline[] = await getHeadlines();
 
