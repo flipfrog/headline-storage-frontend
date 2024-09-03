@@ -19,7 +19,8 @@ const HeadlineList = ({headlines, categories }: {
     const onChangeCategoryCheckbox = async (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const subjectCategory = categories[index];
         const checked = event.target.checked;
-        const newCheckedCategories = checked ? checkedCategories.concat(subjectCategory) : checkedCategories.filter(category => category !== subjectCategory);
+        const newCheckedCategories = checked ?
+            checkedCategories.concat(subjectCategory) : checkedCategories.filter(category => category !== subjectCategory);
         setCheckedCategories(newCheckedCategories);
         const newFilteredHeadlines = await getHeadlines(newCheckedCategories);
         setFilteredHeadlines(newFilteredHeadlines);
