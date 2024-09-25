@@ -6,3 +6,5 @@ run:
 run-prod:
 	npm run build && npx next start
 
+test:
+	npm run test
